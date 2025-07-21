@@ -1,0 +1,594 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="logo.jpg">
+  <title>VALLEYZ RESTAURANT</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+  .hero-text {
+  text-align: center;
+  position: relative;
+  padding-top: 1.5rem;
+}
+
+.hero-text .logo {
+  width: 100px;           /* Small logo */
+  margin-bottom: 0.5rem; /* Space below the logo */
+  display: inline-block;
+}
+
+  .swipe-hand {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1) rotate(-180deg); 
+  z-index: 2; 
+  width: 0px;
+  height: 0px;
+  pointer-events: none; 
+}           
+.swipe-hand img {
+  width: 100%;
+  height: auto;
+}
+* {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body
+ {
+      font-family: 'Poppins', sans-serif;
+      background: fefefe;
+      color: rgb(255, 253, 253);
+      overflow: white; 
+    }
+    .handwriting {
+  font-family: 'Lucida Handwriting', cursive;
+  font-size: 2.5rem;
+  color: #FFD700;
+  letter-spacing: 1px;
+}
+
+
+    .section {
+      display: none;
+      height: 100vh;
+      padding: 2rem;
+      overflow-y: auto;
+      background: #181717;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .swiper-slide {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      gap: 2rem;
+      box-sizing: border-box;
+    }
+
+    .hero-text {
+      flex: 1;
+      max-width: 50%;
+    }
+
+    .hero-img {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img img {
+      width: 100%;
+      border-radius: 10px;
+      max-height: 60vh;
+      object-fit: cover;
+ box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #FFD700;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin: 1rem 0;
+    }
+
+    p {
+      color: #bbb;
+      font-size: 1rem;
+      max-width: 400px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #FFD700;
+      color: black;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .main-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 0;
+      gap: 1rem;
+      z-index: 1000;
+    }
+
+    .main-nav a {
+      padding: 0.5rem 1rem;
+      background: rgb(29, 28, 28);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .main-nav a:hover {
+      background: #25251f; 
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+      .swiper-slide {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text, .hero-img {
+        max-width: 100%;
+      }
+
+      .hero-img img {
+        max-height: 40vh;
+      }
+    }
+    .swiper {
+  background: url('background.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.swiper-slide::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 2;
+}
+
+.swiper-slide >  {
+  position: relative;
+  z-index: 2; 
+}
+
+#menu {
+  padding: 2rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem 3rem;  
+}
+
+
+.product-card {
+  background: #181717;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 15px rgb(0, 0, 0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+}
+
+.product-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 1.2rem;
+  color: #FFD700;
+}
+
+.product-card .price {
+  font-size: 1rem;
+  color: #ffffff;
+   left: 100px;
+}
+
+.product-card .btn {
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+.contact-form {
+  margin-top: 2rem;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form label {
+  font-weight: 500;
+  color: #FFD700;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  background: #222;
+  color: white;
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid #FFD700;
+  background: #111;
+}
+
+.contact-form .btn {
+  width: fit-content;
+  background: #FFD700;
+  color: #000;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.contact-form .btn:hover {
+  background: #fff200;
+}
+#contact {
+  padding-bottom: 5rem; 
+}
+
+#order {
+  padding-bottom: 5rem;
+}
+
+
+  </style>
+</head>
+<body>
+
+<!-- HOME SWIPER -->
+<section id="home" class="section active">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <div class="hero-text">
+          <img src="new.jpg" alt="Valleyz Logo" class="logo" />
+          <h1 class="handwriting">VALLEYZ RESTAURANT</h1>
+          <h2>Fresh Local Ingredients</h2>
+          <p>We use the freshest ingredients from local farms to bring you authentic taste.</p>
+          <a class="btn" onclick="showSection('menu')">See Menu</a>
+        </div>
+        <div class="hero-img">
+          <img src="friedrice front.jpg" alt="Dish 1">
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="hero-text">
+          <img src="new.jpg" alt="Valleyz Logo" class="logo" />
+          <h1 class="handwriting">VALLEYZ RESTAURANT</h1>
+          <h2>Affordable Prices</h2>
+          <p>Enjoy healthy and tasty food without breaking your wallet.</p>
+          <a class="btn" onclick="showSection('contact')">Contact Us</a>
+        </div>
+        <div class="hero-img">
+          <img src="wakey front.jpg" alt="Dish 2">
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <div class="hero-text">
+          <img src="new.jpg" alt="Valleyz Logo" class="logo" />
+          <h1 class="handwriting">VALLEYZ RESTAURANT</h1>
+          <h2>Ghanaian Delicacies</h2>
+          <p>Try our Banku and tilapia combo – a customer favorite!</p>
+          <a class="btn" onclick="showSection('menu')">Order Now</a>
+        </div>
+        <div class="hero-img">
+          <img src="banku front.jpg" alt="Dish 3">
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="swiper-slide">
+        <div class="hero-text">
+          <img src="logo.jpg" alt="Valleyz Logo" class="logo" />
+          <h1 class="handwriting">VALLEYZ RESTAURANT</h1>
+          <h2>Delicious Chips Combo</h2>
+          <p>Enjoy crispy chips and grilled meats served hot and tasty.</p>
+          <a class="btn" onclick="showSection('menu')">See Menu</a>
+        </div>
+        <div class="hero-img">
+          <img src="chips front.jpg" alt="Dish 4">
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="swiper-slide">
+        <div class="hero-text">
+          <img src="logo.jpg" alt="Valleyz Logo" class="logo" />
+          <h1 class="handwriting">VALLEYZ RESTAURANT</h1>
+          <h2>Delicious Chips Combo</h2>
+          <p>Enjoy crispy chips and grilled meats served hot and tasty.</p>
+          <a class="btn" onclick="showSection('menu')">Contact Us</a>
+        </div>
+        <div class="hero-img">
+          <img src="grills front.jpg" alt="Dish 5">
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="swiper-slide">
+        <div class="hero-text">
+          <img src="logo.jpg" alt="Valleyz Logo" class="logo" />
+          <h1 class="handwriting">VALLEYZ RESTAURANT</h1>
+          <h2>Delicious Chips Combo</h2>
+          <p>Enjoy crispy chips and grilled meats served hot and tasty.</p>
+          <a class="btn" onclick="showSection('menu')">Contact Us</a>
+        </div>
+        <div class="hero-img">
+          <img src="chicken wings front.jpg" alt="Dish 6">
+        </div>
+      </div>
+
+    </div> <!-- End swiper-wrapper -->
+
+    <div class="swiper-pagination"></div>
+  </div> <!-- End swiper -->
+
+  <!-- Swiping hand -->
+  <div class="swipe-hand">
+    <img src="hand.gif" alt="Swipe icon" />
+  </div>
+</section>
+
+
+
+<!-- MENU -->
+<section id="menu" class="section">
+  <h2>Our Menu</h2>
+  <p>Discover our variety of meals from local and international cuisines.</p>
+  
+
+ <!-- product cards -->
+  <div class="menu-grid">
+      <div class="product-card"><img src="friedrice.jpeg" alt="Fried Rice" /><h3>Fried Rice</h3><p class="price"> ₵10.00</p><button class="btn" onclick="orderNow('Fried Rice')">Order Now</button>
+
+      <div class="product-card"><img src="kenkey.jpeg" alt="Kenkey" /><h3>Kenkey</h3><p class="price">₵80.00</p><button class="btn" onclick="orderNow('Kenkey')">Order Now</button></div>
+      <div class="product-card"><img src="wakey.jpg" alt="Waakye" /><h3>Waakye</h3><p class="price">₵50.00</p><button class="btn" onclick="orderNow('Waakye')">Order Now</button></div>
+      <div class="product-card"><img src="jollof.jpeg" alt="Jollof" /><h3>Jollof</h3><p class="price">₵80.00</p><button class="btn" onclick="orderNow('Jollof')">Order Now</button></div>
+      <div class="product-card"><img src="fufu.jpeg" alt="Fufu" /><h3>Fufu</h3><p class="price">₵70.00</p><button class="btn" onclick="orderNow('Fufu')">Order Now</button></div>
+      <div class="product-card"><img src="banku.jpeg" alt="Banku" /><h3>Banku</h3><p class="price">₵70.00</p><button class="btn" onclick="orderNow('Banku')">Order Now</button></div>
+      <div class="product-card"><img src="tou zaafi.jpg" alt="Tuo-zaafi" /><h3>Tuo-zaafi</h3><p class="price">₵70.00</p><button class="btn" onclick="orderNow('Tuo-zaafi')">Order Now</button></div>
+      <div class="product-card"><img src="rice balls.jpeg" alt="Rice Ball" /><h3>Rice Ball</h3><p class="price">₵70.00</p><button class="btn" onclick="orderNow('Rice Ball')">Order Now</button></div>
+      <div class="product-card"><img src="plane rice.jpeg" alt="Plain Rice" /><h3>Plain Rice</h3><p class="price">₵80.00</p><button class="btn" onclick="orderNow('Plain Rice')">Order Now</button></div>
+      <div class="product-card"><img src="chips.jpeg" alt="Potato Chips" /><h3>Potato Chips</h3><p class="price">₵70.00</p><button class="btn" onclick="orderNow('Potato Chips')">Order Now</button></div>
+      <div class="product-card"><img src="salad.jpeg" alt="Salad" /><h3>Salad</h3><p class="price">₵60.00</p><button class="btn" onclick="orderNow('Salad')">Order Now</button></div>
+</section>
+<!-- GALLERY -->
+<section id="gallery" class="section">
+  <h2>Gallery</h2>
+  <p>Explore pictures of our beautiful dishes and cozy restaurant atmosphere.</p>
+  <div class="gallery-grid">
+    <img src="1.jpg" alt="Gallery Image 1" />
+    <img src="2.jpg" alt="Gallery Image 2" />
+    <img src="3.jpg" alt="Gallery Image 3" />
+    <img src="4.jpg" alt="Gallery Image 4" />
+    <img src="1.jpg" alt="Gallery Image 5" />
+    <img src="2.jpg" alt="Gallery Image 6" />
+    <img src="3.jpg" alt="Gallery Image 6" />
+    <img src="4.jpg" alt="Gallery Image 6" />
+    <img src="1.jpg" alt="Gallery Image 6" />
+    <img src="2.jpg" alt="Gallery Image 6" />
+    
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h2>About Us</h2>
+  <p>Valleyz Restaurant is committed to delivering healthy, delicious meals with love and excellence.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <p>Reach us at: <br>Email: info@valleyz.com <br>Phone: +233 53 670 8194</p>
+  <!-- CONTACT -->
+
+  <h2>Contact</h2>
+  <p>Reach us by filling out the form below:</p>
+  <form action="#" method="post" class="contact-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+</section>
+
+</section>
+
+<!-- NAVIGATION -->
+<div class="main-nav">
+  <a onclick="showSection('home')">Home</a>
+  <a onclick="showSection('menu')">Menu</a>
+  <a onclick="showSection('gallery')">Gallery</a>
+  <a onclick="showSection('about')">About Us</a>
+  <a onclick="showSection('contact')">Contact</a>
+</div>
+
+
+<!-- ORDER PAGE -->
+<section id="order" class="section">
+  <h2>Place Your Order</h2>
+  <p>Fill in the form below to place your order.</p>
+  <form class="contact-form" onsubmit="confirmOrder(event)">
+    <label for="order-name" onsubmit="return confirmOrder(event)">Your Name:</label>
+    <input type="text" id="order-name" name="order-name" required>
+
+    <label for="order-email">Your Email:</label>
+    <input type="email" id="order-email" name="order-email" required>
+
+    <label for="order-item">Select Item:</label>
+    <select id="order-item" name="order-item" required>
+      <option value="">-- Choose a Dish --</option>
+      <option value="Jollof Rice">Jollof Rice</option>
+      <option value="Kenkey">Kenkey</option>
+      <option value="Waakye">Waakye</option>
+      <option value="Fufu">Fufu</option>
+      <option value="Banku">Banku</option>
+      <option value="Tuo-zaafi">Tuo-zaafi</option>
+      <option value="Rice Ball">Rice Ball</option>
+      <option value="Plain Rice">Plain Rice</option>
+      <option value="Kokonte">Kokonte</option>
+    </select>
+
+    <label for="order-quantity">Quantity:</label>
+    <input type="number" id="order-quantity" name="order-quantity" min="1" value="1" required>
+
+   <button type="submit" class="btn">Submit Order</button>
+</form>
+</section>
+
+<script>
+  function confirmOrder(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('order-name').value;
+    const food = document.getElementById('order-item').value;
+    const qty = document.getElementById('order-quantity').value;
+
+    if (!name || !food || !qty) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    Swal.fire({
+      title: 'Order Received!',
+      text: `Thank you, ${name}! Your order for ${qty} x ${food} has been received.`,
+      icon: 'success',
+      confirmButtonColor: '#FFD700'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.querySelector('.contact-form').reset();
+        showSection('home');
+      }
+    });
+  }
+</script>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.swiper', {
+    direction: 'vertical',
+    loop: true,
+    autoplay: {
+      delay: 3450,
+      disableOnInteraction: false
+    },
+    speed: 1000,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+
+  
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
+<script>
+  function orderNow(foodName) {
+    showSection('order');
+
+    const dropdown = document.getElementById('order-item');
+    if (dropdown) {
+      dropdown.value = foodName;
+    }
+  }
+</script>
+
+</body>
+</html>  
